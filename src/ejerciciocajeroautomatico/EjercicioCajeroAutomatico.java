@@ -40,5 +40,8 @@ public class EjercicioCajeroAutomatico {
                 break;
             }
         }
+        if(ingreso > 0){
+            System.out.println("Dinero pendiente: "+ingreso);
+        }
     }   
 }
