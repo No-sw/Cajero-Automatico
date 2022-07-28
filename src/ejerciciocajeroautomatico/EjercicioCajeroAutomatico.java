@@ -17,27 +17,32 @@ public class EjercicioCajeroAutomatico {
         // TODO code application logic here
                 Scanner entrada = new Scanner(System.in); 
         int ingreso;
-        float contador;
-        int contadorBilletes;
-        int billetes[] = {500, 200, 100, 50, 20, 10, 5, 2, 1};
+        int contador;
+        final int BILLETES[] = {500, 200, 100, 50, 20, 10, 5, 2, 1};
         int cantidadMaxima[] = {10, 2, 1, 1, 2, 3, 2, 3, 5};
+        int contadorBilletes[] = new int[BILLETES.length];
         System.out.print("Ingrese lo que necesite: ");
         ingreso = entrada.nextInt();
         //Estructura de decision con arreglos
-        for(int i=0; i < billetes.length; i++){
-            contadorBilletes = ingreso / billetes[i];
-            if(contadorBilletes > cantidadMaxima[i]){
-                contadorBilletes = cantidadMaxima[i];
+        for(int i=0; i < BILLETES.length; i++){
+            contadorBilletes[i] = ingreso / BILLETES[i];
+            if(contadorBilletes[i] > cantidadMaxima[i]){
+                contadorBilletes[i] = cantidadMaxima[i];
             }
-            if(contadorBilletes == 0){
+            if(contadorBilletes[i] == 0){
                 continue;
-            } else{
-                System.out.println("cantidad de billetes de "+billetes[i]+": "+contadorBilletes);
             }
-            contador = contadorBilletes * billetes[i];
+            contador = contadorBilletes[i] * BILLETES[i];
             ingreso -= contador;
             if(ingreso <= 0){
                 break;
+            }
+        }
+        for(int x=0; x<BILLETES.length; x++){
+            if(contadorBilletes[x] == 0){
+                continue;
+            } else{
+                System.out.println("Cantidad de billetes de "+BILLETES[x]+": "+contadorBilletes[x]);
             }
         }
         if(ingreso > 0){
